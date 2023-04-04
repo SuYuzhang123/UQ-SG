@@ -24,7 +24,7 @@ return sum;
 double sinfun1(double q) //test function
 {
 double test=0;
-if (q>=0&&q<=1)
+if (q>0&&q<1)
 {
 test=sin(pi*q);
 }
@@ -41,9 +41,9 @@ return test;
 double sinfunn(double * Q) //test function
 {
 double test=0;
-if (Q[0]>=0&&Q[0]<=1&&Q[1]>=0&&Q[1]<=1)
+if (Q[0]>0&&Q[0]<1&&Q[1]>0&&Q[1]<1&&Q[2]>0&&Q[2]<1)
 {
-test=sin(pi*Q[0])*sin(pi*Q[1]);
+test=sin(pi*Q[0])*sin(pi*Q[1])*sin(pi*Q[2]);
 }
 else
 {
@@ -159,7 +159,7 @@ vector<double> ccpoints(int n, double a, double b)//Clenshaw-Curtis points in Ar
 
 vector<double> weight(double a, double b, vector<double> x) //return weight
 {
-double q=0;
+//double q=0;
 double step=0.000001;
 int n=x.size();
 vector<double> w(n,1);
@@ -167,12 +167,12 @@ vector<double> w(n,1);
 for (int k=0 ; k<n ; k++)
 {
     double S = 0;
-    double value1=lagrangeBasis(x, a , k)*uniform(a, b);
+    double value1=lagrangeBasis(x, a , k)*uniform(a,b);
     double value2;
     double trapezoidalArea;
     for (double i = a; i < b; i = i + step)
     {
-        value2 = lagrangeBasis(x, i + step , k)*uniform(a, b);
+        value2 = lagrangeBasis(x, i + step , k)*uniform(a,b);
         trapezoidalArea = (value1 + value2)*step / 2;
         value1 = value2;
         S += trapezoidalArea;
